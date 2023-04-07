@@ -10,7 +10,7 @@ const [, , ...args] = process.argv;
 const _widgetsFolder = args[0];
 // Remove last slash if present
 const filteredWidgetsFolder =
-  _widgetsFolder.at(-1) === "/"
+  _widgetsFolder.charAt(-1) === "/"
     ? _widgetsFolder.slice(0, _widgetsFolder.length - 1)
     : _widgetsFolder;
 
