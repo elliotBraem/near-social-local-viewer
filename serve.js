@@ -7,8 +7,6 @@ const app = express();
 
 app.use(cors({ origin: "*" }));
 
-app.use(express.static(path.join(__dirname, "..", "dist")));
-
 app.get("/", function (req, res) {
   // Check if the cache file exists
   if (!fs.existsSync("cache.txt")) {

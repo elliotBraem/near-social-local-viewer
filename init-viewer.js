@@ -10,6 +10,7 @@ const _widgetFile = args[0];
 const _projectDir = process.env.PWD;
 const _widgetJSX = path.join(_projectDir, _widgetFile);
 const mainModulePath = process.mainModule.path;
+const gateway = path.join(__dirname, 'node_modules', 'gateway', 'dist');
 
 // Copy the widget as txt and...
 const watchJSXFileCommand = `WIDGET=${_widgetJSX} nodemon --watch ${_widgetJSX} ./copy-file.js`;
@@ -17,7 +18,7 @@ const watchJSXFileCommand = `WIDGET=${_widgetJSX} nodemon --watch ${_widgetJSX} 
 const serveCacheCommand = "node serve.js";
 // ...Serve the viewer app and...
 const viewerPort = process.env.VIEWER_PORT || 3001;
-const openViewerCommand = `serve -s dist -l ${viewerPort}`;
+const openViewerCommand = `serve -s ${gateway} -l ${viewerPort}`;
 //...open the browser after 1.5sec (time to render the viewer)
 const openBrowserCommand = `sleep 1.5; open http://localhost:${viewerPort}`;
 const concurrentlyCommand = `yarn concurrently "${watchJSXFileCommand}" "${serveCacheCommand}" "${openViewerCommand}" "${openBrowserCommand}"`;
